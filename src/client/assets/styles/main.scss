@@ -257,6 +257,14 @@ a {
   ul {
     margin-bottom: 50px;
   }
+
+  &-no-sessions span {
+    display: inline-block;
+    padding: 10px;
+    border-radius: 10px;
+    color: #fff;
+    background: #85C2FF;
+  }
 }
 
 .schedule-page {

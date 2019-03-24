@@ -11,14 +11,14 @@ export default class SchedulePage extends Component {
     this.state = {
       pageTitle: 'Schedule',
       filterDates: {
-        startDate: moment().startOf('day').format('YYYY-MM-DDTHH:mm'),
+        startDate: moment().format('YYYY-MM-DDTHH:mm'),
         endDate: moment().endOf('day').format('YYYY-MM-DDTHH:mm')
       },
       movies: []
     }
   }
   componentDidMount () {
-    fetch('api/sessions/getsessionsmovies', {
+    fetch('/api/sessions/getsessionsmovies', {
       method: 'post',
       headers: {
         'Accept': 'application/json, text/plain, */*',

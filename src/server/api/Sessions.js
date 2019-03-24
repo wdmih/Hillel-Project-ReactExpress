@@ -44,6 +44,16 @@ function getSessionsGroups (movieId) {
   })
 }
 
+function getSessionsbyParams (movieId, date) {
+  let currDate = moment(date).valueOf()
+  let endOfCurrDate = moment(date).endOf('day').valueOf()
+
+  return db.get('sessions').filter(item => {
+    let sessionDate = moment(item.sessionDate).valueOf()
+    return (item.movieId === movieId && currDate <= sessionDate && sessionDate <= endOfCurrDate)
+  }).value()
+}
+
 router.get('/sessions/getsessionsgroups/:id', (req, res) => {
   res.json(getSessionsGroups(req.params.id))
 })
@@ -56,6 +66,13 @@ router.post('/sessions/getsessionsmovies', (req, res) => {
 
 router.get('/sessions/getbyid/:id', (req, res) => {
   res.json(db.get('sessions').find({ id: Number(req.params.id) }).value())
+})
+
+router.post('/sessions/getcurrmoviesessions', (req, res) => {
+  let movieId = req.body.movieId
+  let date = req.body.date
+
+  res.json(getSessionsbyParams(movieId, date))
 })
 
 module.exports = router
