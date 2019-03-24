@@ -1,4 +1,5 @@
 const path = require('path')
+const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const autoprefixer = require('autoprefixer')
@@ -55,6 +56,7 @@ module.exports = {
   resolve: {
     extensions: ['*', '.js', '.jsx']
   },
+  devtool: 'eval-source-map',
   devServer: {
     port: 3000,
     open: true,
@@ -64,6 +66,7 @@ module.exports = {
     }
   },
   plugins: [
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: './public/index.html'

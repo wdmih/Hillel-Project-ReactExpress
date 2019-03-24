@@ -7,11 +7,12 @@ export default class MovieListItem extends Component {
     super(props)
   }
   render () {
+    let { poster_path, slug, title } = this.props.item
     return (
       <article className="movies-list__item">
-        <Link to={'/detail/' + this.props.item.slug} style={{ backgroundImage: `url(${this.props.item.poster_path})` }}>
+        <Link to={'/detail/' + slug} style={{ backgroundImage: `url(${poster_path})` }}>
           <div className="movie-title">
-            <h2>{this.props.item.title}</h2>
+            <h2>{title}</h2>
           </div>
         </Link>
       </article>

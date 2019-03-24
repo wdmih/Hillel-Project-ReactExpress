@@ -4,9 +4,12 @@ import PageTitle from '../components/Page-Title'
 import MovieListItem from '../components/Movie-List-Item'
 
 export default class MainPage extends Component {
-  state = {
-    pageTitle: 'now playing',
-    movies: []
+  constructor (props) {
+    super(props)
+    this.state = {
+      pageTitle: 'now playing',
+      movies: []
+    }
   }
   componentDidMount () {
     fetch('/api/movies')
@@ -14,11 +17,12 @@ export default class MainPage extends Component {
       .then(movies => this.setState({ movies: movies }))
   }
   render () {
+    let { pageTitle, movies } = this.state
     return (
       <Fragment>
-        <PageTitle pageTitle={this.state.pageTitle} />
+        <PageTitle pageTitle={pageTitle} />
         <div className="section-content movies-list">
-          {this.state.movies.map(item => (
+          {movies.map(item => (
             <MovieListItem key={item.id} item={item}/>
           ))}
         </div>

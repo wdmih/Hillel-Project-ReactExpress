@@ -270,7 +270,7 @@ a {
 
 .movie-session {
   background: rgba(#E8F0FF, .5);
-  height: 238px;
+  min-height: 238px;
   border-radius: 10px;
   overflow: hidden;
   display: flex;
@@ -280,6 +280,7 @@ a {
   }
 
   &__img {
+    max-height: 238px;
     flex: 0 0 160px;
     border-radius: 10px;
     overflow: hidden;
@@ -291,14 +292,18 @@ a {
 
     h3 {
       font-size: 1.5rem;
-      font-weight: 900;
+      font-weight: 700;
       margin-bottom: 15px;
     }
 
     span {
       display: block;
-      margin-bottom: 15px;
+      margin-bottom: 10px;
     }
+  }
+
+  &__wrap {
+    margin-bottom: 10px;
   }
 }
 
@@ -313,7 +318,7 @@ a {
   ul {
     display: flex;
     margin-left: -25px;
-    max-width: 360px;
+    // max-width: 360px;
     flex-wrap: wrap;
   }
 }
@@ -326,13 +331,13 @@ a {
   flex-shrink: 0;
   margin-left: 25px;
   margin-bottom: 15px;
-  padding: 6px 0;
   color: #fff;
   transition: .3s;
 
   a {
     display: block;
     text-align: center;
+    padding: 6px 0;
   }
 
   &:hover {

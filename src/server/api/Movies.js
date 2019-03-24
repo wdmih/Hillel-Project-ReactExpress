@@ -1,17 +1,16 @@
-const movies = require('../sample-data/movies.json')
-
+const db = require('../db')
 const router = require('express').Router()
 
 router.get('/movies', (req, res) => {
-  res.json(movies)
+  res.json(db.get('movies').value())
 })
 
 function checkSlug (slug) {
   let result = null
   if (isNaN(slug)) {
-    result = movies.find(item => item.slug === slug)
+    result = db.get('movies').find({ slug: slug }).value()
   } else {
-    result = movies.find(item => item.id === Number(slug))
+    result = db.get('movies').find({ id: Number(slug) }).value()
   }
   return result
 }

@@ -5,10 +5,11 @@ import PropTypes from 'prop-types'
 export default class MovieDetailPage extends Component {
   constructor (props) {
     super(props)
+    this.state = {
+      movie: {}
+    }
   }
-  state = {
-    movie: {}
-  }
+
   componentDidMount () {
     fetch(`/api/movies/${this.props.match.params.slug}`)
       .then(res => res.json())

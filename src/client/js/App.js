@@ -4,7 +4,6 @@ import { Route, Switch } from 'react-router-dom'
 import '../assets/styles/main.scss'
 
 import Header from './views/components/Header'
-// import Aside from './views/components/Aside'
 
 // Lazy loading page components
 const MainPage = React.lazy(() => import('./views/pages/Main-Page'))
@@ -27,7 +26,6 @@ export default class App extends Component {
             </Switch>
           </React.Suspense>
         </section>
-        {/* <Aside /> */}
       </section>
     )
   }
