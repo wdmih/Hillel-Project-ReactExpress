@@ -3,7 +3,7 @@ import moment from 'moment'
 
 import PageTitle from '../components/Page-Title'
 import Aside from '../components/Aside'
-import ScheduleListItem from '../components/Schedule-List-Item'
+import ScheduleList from '../components/Schedule-List'
 
 export default class SchedulePage extends Component {
   constructor (props) {
@@ -18,10 +18,18 @@ export default class SchedulePage extends Component {
     }
   }
   componentDidMount () {
+    this.loadSessions()
+  }
+
+  componentDidUpdate () {
+    this.loadSessions()
+  }
+
+  loadSessions () {
     fetch('/api/sessions/getsessionsmovies', {
       method: 'post',
       headers: {
-        'Accept': 'application/json, text/plain, */*',
+        Accept: 'application/json, text/plain, */*',
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({ dates: this.state.filterDates })
@@ -29,20 +37,18 @@ export default class SchedulePage extends Component {
       .then(res => res.json())
       .then(movies => this.setState({ movies: movies }))
   }
+
+  updateFilterDates = value => {
+    this.setState({ filterDates: value })
+  }
+
   render () {
     let { pageTitle, movies } = this.state
     return (
       <Fragment>
-        <PageTitle pageTitle={pageTitle}/>
-        <div className="section-content schedule-page">
-          {movies.length > 0 ? movies.map(item => (
-            <ScheduleListItem key={item.id} item={item}/>
-          )) : <div className="movie-info-no-sessions">
-            <p>There are no sessions for the selected date, please select a different date range</p>
-          </div>}
-
-        </div>
-        <Aside/>
+        <PageTitle pageTitle={pageTitle} />
+        <ScheduleList movies={movies} />
+        <Aside updateFilterDates={this.updateFilterDates} />
       </Fragment>
     )
   }
