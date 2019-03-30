@@ -8,6 +8,7 @@ import ScheduleList from '../components/Schedule-List'
 export default class SchedulePage extends Component {
   constructor (props) {
     super(props)
+    this._isMounted = false
     this.state = {
       pageTitle: 'Schedule',
       filterDates: {
@@ -18,11 +19,12 @@ export default class SchedulePage extends Component {
     }
   }
   componentDidMount () {
-    this.loadSessions()
+    this._isMounted = true
+    this._isMounted && this.loadSessions()
   }
 
-  componentDidUpdate () {
-    this.loadSessions()
+  componentWillUnmount () {
+    this._isMounted = false
   }
 
   loadSessions () {
@@ -35,11 +37,15 @@ export default class SchedulePage extends Component {
       body: JSON.stringify({ dates: this.state.filterDates })
     })
       .then(res => res.json())
-      .then(movies => this.setState({ movies: movies }))
+      .then(movies => this._isMounted && this.setState({ movies: movies }))
   }
 
   updateFilterDates = value => {
     this.setState({ filterDates: value })
+  }
+
+  componentDidUpdate () {
+    this.loadSessions()
   }
 
   render () {

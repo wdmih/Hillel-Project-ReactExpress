@@ -5,51 +5,33 @@ import moment from 'moment'
 export default class Aside extends Component {
   constructor (props) {
     super(props)
-    this.state = {
-      selectedFilter: 'today',
-      filterDates: {
-        startDate: moment().format('YYYY-MM-DDTHH:mm'),
-        endDate: moment().endOf('day').format('YYYY-MM-DDTHH:mm')
-      }
-    }
-  }
-  // componentDidUpdate () {
-  //   this.props.updateFilterDates(this.filterDateHelper(this.state.selectedFilter))
-  // }
-
-  componentDidMount () {
-    this.props.updateFilterDates(this.state.filterDates)
   }
 
-  onClickHandler (value) {
-    this.setState({ selectedFilter: value })
-    this.filterDateHelper(this.state.selectedFilter)
-    this.props.updateFilterDates(this.state.filterDates)
+  onChangeHandler (value) {
+    this.props.updateFilterDates(this.filterDateHelper(value))
   }
 
   filterDateHelper (value) {
     if (value === 'today') {
-      this.setState({ filterDates: {
+      return {
         startDate: moment().format('YYYY-MM-DDTHH:mm'),
         endDate: moment().endOf('day').format('YYYY-MM-DDTHH:mm')
-      } })
+      }
     } else if (value === 'tomorrow') {
-      this.setState({ filterDates: {
+      return {
         startDate: moment().add(1, 'days').startOf('day').format('YYYY-MM-DDTHH:mm'),
         endDate: moment().add(1, 'days').endOf('day').format('YYYY-MM-DDTHH:mm')
-      } })
+      }
     } else if (value === 'week') {
-      this.setState({ filterDates: {
+      return {
         startDate: moment().format('YYYY-MM-DDTHH:mm'),
         endDate: moment().endOf('isoweek').format('YYYY-MM-DDTHH:mm')
-      } })
+      }
     } else if (value === 'month') {
-      this.setState({ filterDates: {
+      return {
         startDate: moment().format('YYYY-MM-DDTHH:mm'),
         endDate: moment().endOf('month').format('YYYY-MM-DDTHH:mm')
-      } })
-    } else {
-      return null
+      }
     }
   }
 
@@ -64,7 +46,7 @@ export default class Aside extends Component {
               name="date-filter"
               value="today"
               defaultChecked
-              onClick={(e) => this.onClickHandler(e.target.value)}
+              onChange={(e) => this.onChangeHandler(e.target.value)}
             />
             <div className="radio__text">today</div>
           </label>
@@ -73,7 +55,7 @@ export default class Aside extends Component {
               type="radio"
               name="date-filter"
               value="tomorrow"
-              onClick={(e) => this.onClickHandler(e.target.value)}
+              onChange={(e) => this.onChangeHandler(e.target.value)}
             />
             <div className="radio__text">tomorrow</div>
           </label>
@@ -82,7 +64,7 @@ export default class Aside extends Component {
               type="radio"
               name="date-filter"
               value="week"
-              onClick={(e) => this.onClickHandler(e.target.value)}
+              onChange={(e) => this.onChangeHandler(e.target.value)}
             />
             <div className="radio__text">this week</div>
           </label>
@@ -91,7 +73,7 @@ export default class Aside extends Component {
               type="radio"
               name="date-filter"
               value="month"
-              onClick={(e) => this.onClickHandler(e.target.value)}
+              onChange={(e) => this.onChangeHandler(e.target.value)}
             />
             <div className="radio__text">this month</div>
           </label>
