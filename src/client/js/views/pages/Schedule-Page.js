@@ -4,6 +4,7 @@ import moment from 'moment'
 import PageTitle from '../components/Page-Title'
 import Aside from '../components/Aside'
 import ScheduleList from '../components/Schedule-List'
+import Modal from '../components/Modal'
 
 export default class SchedulePage extends Component {
   constructor (props) {
@@ -15,12 +16,20 @@ export default class SchedulePage extends Component {
         startDate: moment().format('YYYY-MM-DDTHH:mm'),
         endDate: moment().endOf('day').format('YYYY-MM-DDTHH:mm')
       },
-      movies: []
+      movies: [],
+      modalIsShow: false,
+      sessionIdForModal: null
     }
   }
   componentDidMount () {
     this._isMounted = true
     this._isMounted && this.loadSessions()
+  }
+
+  componentDidUpdate (prevProps, prevState) {
+    if (prevState.filterDates !== this.state.filterDates) {
+      this.loadSessions()
+    }
   }
 
   componentWillUnmount () {
@@ -44,17 +53,25 @@ export default class SchedulePage extends Component {
     this.setState({ filterDates: value })
   }
 
-  componentDidUpdate () {
-    this.loadSessions()
+  openModal = (sessionId) => {
+    this.setState({
+      modalIsShow: true,
+      sessionIdForModal: sessionId
+    })
+  }
+
+  closeModal = () => {
+    this.setState({ modalIsShow: false })
   }
 
   render () {
-    let { pageTitle, movies } = this.state
+    let { pageTitle, movies, modalIsShow, sessionIdForModal } = this.state
     return (
       <Fragment>
         <PageTitle pageTitle={pageTitle} />
-        <ScheduleList movies={movies} />
+        <ScheduleList movies={movies} openModal={this.openModal} />
         <Aside updateFilterDates={this.updateFilterDates} />
+        {this.state.modalIsShow && <Modal isShow={modalIsShow} sessionId={sessionIdForModal} onCloseModal={this.closeModal}/>}
       </Fragment>
     )
   }

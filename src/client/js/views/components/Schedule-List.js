@@ -13,7 +13,7 @@ export default class ScheduleList extends Component {
       <div className="section-content schedule-page">
         {this.props.movies.length > 0 ? (
           this.props.movies.map(item => (
-            <ScheduleListItem key={item.id} item={item} />
+            <ScheduleListItem key={item.id} item={item} openModal={this.props.openModal} />
           ))
         ) : (
           <div className="movie-info-no-sessions">
@@ -28,5 +28,6 @@ export default class ScheduleList extends Component {
   }
 }
 ScheduleList.propTypes = {
-  movies: PropTypes.array
+  movies: PropTypes.array,
+  openModal: PropTypes.func
 }

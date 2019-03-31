@@ -31,7 +31,7 @@ export default class ScheduleListItem extends Component {
                   <ul>
                     {group.map((item, index) => (
                       <li key={index} className="session-time-tag">
-                        <a className="session-time-item" href="#" data-sesid={item.id}>
+                        <a className="session-time-item" href="#" onClick={() => this.props.openModal(item.id)}>
                           {new Date(item.sessionDate).getHours()}:{new Date(item.sessionDate).getMinutes()}
                         </a>
                       </li>
@@ -48,4 +48,5 @@ export default class ScheduleListItem extends Component {
 }
 ScheduleListItem.propTypes = {
   item: PropTypes.object,
+  openModal: PropTypes.func
 }

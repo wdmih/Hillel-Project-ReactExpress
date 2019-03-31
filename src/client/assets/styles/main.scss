@@ -425,7 +425,7 @@ a {
 }
 
 .modal {
-  // display: none;
+  display: none;
   position: fixed;
   z-index: 10;
   left: 0;
@@ -444,6 +444,10 @@ a {
     border-radius: 10px;
     width: 88vw;
     box-shadow: 0px 0px 15px 0px rgba(#3B5E92, .35);
+  }
+
+  &.modal--active {
+    display: block;
   }
 }
 
@@ -575,11 +579,16 @@ a {
     display: inline-block;
     width: 30px;
     height: 40px;
+    background: transparent;
     border: 2px solid #7C62FC;
     border-radius: 10px;
     margin-left: 5px;
     transition: .3s ease;
     cursor: pointer;
+
+    &.checked {
+      background: #7C62FC;
+    }
 
     &.disabled {
       border: none;
