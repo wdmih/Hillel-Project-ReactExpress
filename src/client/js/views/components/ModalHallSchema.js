@@ -3,6 +3,9 @@ import PropTypes from 'prop-types'
 import screenImg from './../../../assets/img/screen.svg'
 
 export default class ModalHallSchema extends Component {
+  static propTypes = {
+    session: PropTypes.object
+  }
   constructor (props) {
     super(props)
   }
@@ -31,8 +34,4 @@ export default class ModalHallSchema extends Component {
       </Fragment>
     )
   }
-}
-
-ModalHallSchema.propTypes = {
-  session: PropTypes.object
 }

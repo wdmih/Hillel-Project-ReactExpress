@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 export default class MovieListItem extends Component {
+  static propTypes = {
+    item: PropTypes.object
+  }
   constructor (props) {
     super(props)
   }
@@ -18,8 +21,4 @@ export default class MovieListItem extends Component {
       </article>
     )
   }
-}
-
-MovieListItem.propTypes = {
-  item: PropTypes.object
 }

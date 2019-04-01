@@ -6,6 +6,11 @@ import ModalOrder from '../components/ModalOrder'
 import ModalHallSchema from '../components/ModalHallSchema'
 
 export default class Modal extends Component {
+  static propTypes = {
+    isShow: PropTypes.bool,
+    onCloseModal: PropTypes.func,
+    sessionId: PropTypes.number
+  }
   constructor (props) {
     super(props)
     this.state = {
@@ -47,10 +52,4 @@ export default class Modal extends Component {
       </div>
     )
   }
-}
-
-Modal.propTypes = {
-  isShow: PropTypes.bool,
-  onCloseModal: PropTypes.func,
-  sessionId: PropTypes.number
 }

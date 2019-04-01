@@ -4,6 +4,10 @@ import PropTypes from 'prop-types'
 import ScheduleListItem from '../components/Schedule-List-Item'
 
 export default class ScheduleList extends Component {
+  static propTypes = {
+    movies: PropTypes.array,
+    openModal: PropTypes.func
+  }
   constructor (props) {
     super(props)
   }
@@ -26,8 +30,4 @@ export default class ScheduleList extends Component {
       </div>
     )
   }
-}
-ScheduleList.propTypes = {
-  movies: PropTypes.array,
-  openModal: PropTypes.func
 }

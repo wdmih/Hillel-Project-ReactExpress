@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 export default class ModalMovieSection extends Component {
+  static propTypes = {
+    movie: PropTypes.object,
+    session: PropTypes.object
+  }
   constructor (props) {
     super(props)
   }
@@ -19,8 +23,4 @@ export default class ModalMovieSection extends Component {
       </div>
     )
   }
-}
-ModalMovieSection.propTypes = {
-  movie: PropTypes.object,
-  session: PropTypes.object
 }

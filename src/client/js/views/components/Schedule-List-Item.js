@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 export default class ScheduleListItem extends Component {
+  static propTypes = {
+    item: PropTypes.object,
+    openModal: PropTypes.func
+  }
   constructor (props) {
     super(props)
     this.state = {
@@ -45,8 +49,4 @@ export default class ScheduleListItem extends Component {
       </article>
     )
   }
-}
-ScheduleListItem.propTypes = {
-  item: PropTypes.object,
-  openModal: PropTypes.func
 }

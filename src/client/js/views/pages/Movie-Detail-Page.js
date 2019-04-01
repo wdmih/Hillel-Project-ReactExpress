@@ -4,6 +4,9 @@ import moment from 'moment'
 import PropTypes from 'prop-types'
 
 export default class MovieDetailPage extends Component {
+  static propTypes = {
+    match: PropTypes.object
+  }
   constructor (props) {
     super(props)
     this.state = {
@@ -85,8 +88,4 @@ export default class MovieDetailPage extends Component {
       </Fragment>
     )
   }
-}
-
-MovieDetailPage.propTypes = {
-  match: PropTypes.object
 }

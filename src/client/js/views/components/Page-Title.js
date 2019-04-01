@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 export default class PageTitle extends Component {
+  static propTypes = {
+    pageTitle: PropTypes.string,
+  }
   constructor (props) {
     super(props)
   }
@@ -15,8 +18,4 @@ export default class PageTitle extends Component {
       </div>
     )
   }
-}
-
-PageTitle.propTypes = {
-  pageTitle: PropTypes.string,
 }

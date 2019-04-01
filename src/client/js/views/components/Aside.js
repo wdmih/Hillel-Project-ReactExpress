@@ -3,6 +3,9 @@ import PropTypes from 'prop-types'
 import moment from 'moment'
 
 export default class Aside extends Component {
+  static propTypes = {
+    updateFilterDates: PropTypes.func
+  }
   constructor (props) {
     super(props)
   }
@@ -81,8 +84,4 @@ export default class Aside extends Component {
       </aside>
     )
   }
-}
-
-Aside.propTypes = {
-  updateFilterDates: PropTypes.func
 }
