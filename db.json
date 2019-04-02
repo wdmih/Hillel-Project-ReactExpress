@@ -422,7 +422,7 @@
     {
       "id": 236159207497,
       "movieId": 399579,
-      "sessionDate": "2019-03-31T07:30:00.000Z",
+      "sessionDate": "2019-04-02T16:30:00",
       "hall": {
         "name": "cinetech",
         "rows": 4,
@@ -614,7 +614,7 @@
     {
       "id": 1062192625002,
       "movieId": 399579,
-      "sessionDate": "2019-03-31T20:30:00.000Z",
+      "sessionDate": "2019-04-02T20:30:00",
       "hall": {
         "name": "imax",
         "rows": 6,
@@ -1016,7 +1016,7 @@
     {
       "id": 1199379356545,
       "movieId": 399579,
-      "sessionDate": "2019-04-01T12:10:00.000Z",
+      "sessionDate": "2019-04-03T12:10:00",
       "hall": {
         "name": "cinetech",
         "rows": 4,
@@ -1208,7 +1208,7 @@
     {
       "id": 982882788931,
       "movieId": 490132,
-      "sessionDate": "2019-03-31T12:10:00.000Z",
+      "sessionDate": "2019-04-02T12:10:00",
       "hall": {
         "name": "cinetech",
         "rows": 4,
@@ -1400,7 +1400,7 @@
     {
       "id": 851640389391,
       "movieId": 490132,
-      "sessionDate": "2019-04-01T10:10:00.000Z",
+      "sessionDate": "2019-04-03T10:10:00",
       "hall": {
         "name": "imax",
         "rows": 6,
@@ -1802,7 +1802,7 @@
     {
       "id": 1103772101118,
       "movieId": 490132,
-      "sessionDate": "2019-04-01T20:20:00.000Z",
+      "sessionDate": "2019-04-03T20:20:00",
       "hall": {
         "name": "cinetech",
         "rows": 4,
@@ -1994,7 +1994,7 @@
     {
       "id": 1090791023666,
       "movieId": 299537,
-      "sessionDate": "2019-03-31T17:13:00.000Z",
+      "sessionDate": "2019-04-02T17:13:00",
       "hall": {
         "name": "cinetech",
         "rows": 4,
@@ -2186,7 +2186,7 @@
     {
       "id": 974523820973,
       "movieId": 299537,
-      "sessionDate": "2019-03-31T12:50:00.000Z",
+      "sessionDate": "2019-04-04T12:50:00",
       "hall": {
         "name": "imax",
         "rows": 6,
@@ -2588,7 +2588,7 @@
     {
       "id": 1004016100944,
       "movieId": 299537,
-      "sessionDate": "2019-03-31T15:35:00.000Z",
+      "sessionDate": "2019-04-25T15:35:00",
       "hall": {
         "name": "cinetech",
         "rows": 4,
