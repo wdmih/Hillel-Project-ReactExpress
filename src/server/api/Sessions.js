@@ -1,22 +1,24 @@
 const db = require('../db')
 const router = require('express').Router()
 const moment = require('moment')
-const withoutTime = require('../helpers/without-time')
 
-let actualSessions = []
+// get 30 days sessions
+function getSessions () {
+  let currDate = moment().valueOf()
+  let monthFromCurr = moment().add(1, 'months').valueOf()
 
-function getSessionMoviesId (dates) {
-  let startDate = moment(dates.startDate).valueOf()
-  let endDate = dates.endDate ? moment(dates.endDate).valueOf() : moment(dates.startDate).valueOf()
-
-  actualSessions = db.get('sessions').filter(item => {
+  return db.get('sessions').filter(item => {
     let sessionDate = moment(item.sessionDate).valueOf()
-    return (startDate <= sessionDate && sessionDate <= endDate)
+    return (currDate <= sessionDate && sessionDate <= monthFromCurr)
   }).value()
-
-  return [...new Set(actualSessions.map(item => item.movieId))]
 }
 
+// get list of movies id which has session
+function getSessionMoviesId (arr) {
+  return [...new Set(arr.map(item => item.movieId))]
+}
+
+// get list of movies which has sessions
 function getMoviesWithSessions (arrOfIds) {
   let moviesWithSession = []
   arrOfIds.forEach(item => {
@@ -25,54 +27,29 @@ function getMoviesWithSessions (arrOfIds) {
   return moviesWithSession
 }
 
-function getSessionsGroups (movieId) {
-  let groups = actualSessions
-    .filter(item => {
-      return (item.movieId === Number(movieId))
-    })
-    .reduce((groups, item) => {
-      const date = withoutTime(item.sessionDate).valueOf()
-      if (!groups[date]) {
-        groups[date] = []
-      }
-      groups[date].push(item)
-      return groups
-    }, {})
-
-  return Object.keys(groups).map((date) => {
-    return groups[date]
-  })
-}
-
-function getSessionsbyParams (movieId, date) {
-  let currDate = moment(date).valueOf()
-  let endOfCurrDate = moment(date).endOf('day').valueOf()
+// get sessions by movieId
+function getSessionsbyParams (movieId) {
+  let currDate = moment().valueOf()
+  let endOfCurrDate = moment().endOf('day').valueOf()
 
   return db.get('sessions').filter(item => {
     let sessionDate = moment(item.sessionDate).valueOf()
-    return (item.movieId === movieId && currDate <= sessionDate && sessionDate <= endOfCurrDate)
+    return (item.movieId === Number(movieId) && currDate <= sessionDate && sessionDate <= endOfCurrDate)
   }).value()
 }
 
-router.get('/sessions/getsessionsgroups/:id', (req, res) => {
-  res.json(getSessionsGroups(req.params.id))
+router.get('/sessions/getSessions', (req, res) => {
+  res.json(getSessions())
 })
 
-router.post('/sessions/getsessionsmovies', (req, res) => {
-  let dates = req.body.dates
-  let moviesWithSession = getSessionMoviesId(dates)
+router.get('/sessions/getSessionsMovies', (req, res) => {
+  let moviesWithSession = getSessionMoviesId(getSessions())
   res.json(getMoviesWithSessions(moviesWithSession))
 })
 
-router.get('/sessions/getbyid/:id', (req, res) => {
-  res.json(db.get('sessions').find({ id: Number(req.params.id) }).value())
-})
-
-router.post('/sessions/getcurrmoviesessions', (req, res) => {
-  let movieId = req.body.movieId
-  let date = req.body.date
-
-  res.json(getSessionsbyParams(movieId, date))
+router.get('/sessions/getCurMovieSession/:id', (req, res) => {
+  let movieId = req.params.id
+  res.json(getSessionsbyParams(movieId))
 })
 
 module.exports = router

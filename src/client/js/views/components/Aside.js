@@ -17,23 +17,23 @@ export default class Aside extends Component {
   filterDateHelper (value) {
     if (value === 'today') {
       return {
-        startDate: moment().format('YYYY-MM-DDTHH:mm'),
-        endDate: moment().endOf('day').format('YYYY-MM-DDTHH:mm')
+        startDate: moment(),
+        endDate: moment().endOf('day')
       }
     } else if (value === 'tomorrow') {
       return {
-        startDate: moment().add(1, 'days').startOf('day').format('YYYY-MM-DDTHH:mm'),
-        endDate: moment().add(1, 'days').endOf('day').format('YYYY-MM-DDTHH:mm')
+        startDate: moment().add(1, 'days').startOf('day'),
+        endDate: moment().add(1, 'days').endOf('day')
       }
     } else if (value === 'week') {
       return {
-        startDate: moment().format('YYYY-MM-DDTHH:mm'),
-        endDate: moment().endOf('isoweek').format('YYYY-MM-DDTHH:mm')
+        startDate: moment(),
+        endDate: moment().endOf('isoweek')
       }
     } else if (value === 'month') {
       return {
-        startDate: moment().format('YYYY-MM-DDTHH:mm'),
-        endDate: moment().endOf('month').format('YYYY-MM-DDTHH:mm')
+        startDate: moment(),
+        endDate: moment().endOf('month')
       }
     }
   }

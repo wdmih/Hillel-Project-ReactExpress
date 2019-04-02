@@ -6,7 +6,8 @@ import ScheduleListItem from '../components/Schedule-List-Item'
 export default class ScheduleList extends Component {
   static propTypes = {
     movies: PropTypes.array,
-    openModal: PropTypes.func
+    openModal: PropTypes.func,
+    sessions: PropTypes.array
   }
   constructor (props) {
     super(props)
@@ -17,7 +18,7 @@ export default class ScheduleList extends Component {
       <div className="section-content schedule-page">
         {this.props.movies.length > 0 ? (
           this.props.movies.map(item => (
-            <ScheduleListItem key={item.id} item={item} openModal={this.props.openModal} />
+            <ScheduleListItem key={item.id} item={item} sessions={this.props.sessions} openModal={this.props.openModal} />
           ))
         ) : (
           <div className="movie-info-no-sessions">

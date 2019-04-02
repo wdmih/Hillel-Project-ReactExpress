@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
+import moment from 'moment'
 import PropTypes from 'prop-types'
 
 export default class ScheduleListItem extends Component {
   static propTypes = {
     item: PropTypes.object,
-    openModal: PropTypes.func
+    openModal: PropTypes.func,
+    sessions: PropTypes.array
   }
   constructor (props) {
     super(props)
@@ -13,9 +15,32 @@ export default class ScheduleListItem extends Component {
     }
   }
   componentDidMount () {
-    fetch(`/api/sessions/getsessionsgroups/${this.props.item.id}`)
-      .then(res => res.json())
-      .then(sessions => this.setState({ sessionsGroup: sessions }))
+    this.setState({ sessionsGroup: this.getSessionsGroups(this.props.item.id) })
+  }
+
+  componentDidUpdate (prevProps, prevState) {
+    if (prevProps !== this.props) {
+      this.setState({ sessionsGroup: this.getSessionsGroups(this.props.item.id) })
+    }
+  }
+
+  getSessionsGroups (movieId) {
+    let groups = this.props.sessions
+      .filter(item => {
+        return (item.movieId === Number(movieId))
+      })
+      .reduce((groups, item) => {
+        const date = moment(item.sessionDate).format('LL').valueOf()
+        if (!groups[date]) {
+          groups[date] = []
+        }
+        groups[date].push(item)
+        return groups
+      }, {})
+
+    return Object.keys(groups).map((date) => {
+      return groups[date]
+    })
   }
   render () {
     let { poster_path, title } = this.props.item

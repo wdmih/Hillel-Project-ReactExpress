@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import PageTitle from '../components/Page-Title'
-import moment from 'moment'
 import PropTypes from 'prop-types'
+import axios from 'axios'
 
 export default class MovieDetailPage extends Component {
   static propTypes = {
@@ -15,24 +15,18 @@ export default class MovieDetailPage extends Component {
     }
   }
   componentDidMount () {
-    fetch(`/api/movies/${this.props.match.params.slug}`)
-      .then(movieRes => movieRes.json())
-      .then(movie => {
-        this.setState({ movie: movie })
-        return fetch('/api/sessions/getcurrmoviesessions', {
-          method: 'post',
-          headers: {
-            'Accept': 'application/json, text/plain, */*',
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            movieId: this.state.movie.id,
-            date: moment().format('YYYY-MM-DDTHH:mm')
-          })
-        })
+    this.loadMovie()
+      .then(movRes => {
+        this.setState({ movie: movRes.data })
+        this.loadSessions()
+          .then(sesRes => this.setState({ sessions: sesRes.data }))
       })
-      .then(sessionRes => sessionRes.json())
-      .then(sessions => this.setState({ sessions: sessions }))
+  }
+  loadMovie () {
+    return axios.get(`/api/movies/${this.props.match.params.slug}`)
+  }
+  loadSessions () {
+    return axios.get(`/api/sessions/getCurMovieSession/${this.state.movie.id}`)
   }
   render () {
     let { movie, sessions } = this.state
