@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
-import axios from 'axios'
+
+import api from '../../api'
 
 import PageTitle from '../components/Page-Title'
 import MovieListItem from '../components/Movie-List-Item'
@@ -13,8 +14,8 @@ export default class MainPage extends Component {
     }
   }
   componentDidMount () {
-    axios.get('/api/movies')
-      .then((res) => this.setState({ movies: res.data }))
+    api.movies.getMovies()
+      .then((movRes) => this.setState({ movies: movRes.data }))
   }
   render () {
     let { pageTitle, movies } = this.state

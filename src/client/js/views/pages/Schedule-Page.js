@@ -2,10 +2,12 @@ import React, { Component, Fragment } from 'react'
 import moment from 'moment'
 import axios from 'axios'
 
+import api from '../../api'
+
 import PageTitle from '../components/Page-Title'
 import Aside from '../components/Aside'
 import ScheduleList from '../components/Schedule-List'
-import Modal from '../components/Modal'
+// import Modal from '../components/Modal'
 
 export default class SchedulePage extends Component {
   constructor (props) {
@@ -26,9 +28,9 @@ export default class SchedulePage extends Component {
   }
 
   componentDidMount () {
-    axios.all([this.loadSessions(), this.loadMovies()])
-      .then(axios.spread((sess, movs) => {
-        this.setState({ sessions: sess.data, movies: movs.data })
+    axios.all([api.sessions.getSessions(), api.sessions.getMoviesWithSessions()])
+      .then(axios.spread((sesRes, movRes) => {
+        this.setState({ sessions: sesRes.data, movies: movRes.data })
       }))
       .then(() => this.setActualMovieSessions(this.state.filterDates))
   }
@@ -37,14 +39,6 @@ export default class SchedulePage extends Component {
     if (prevState.filterDates !== this.state.filterDates) {
       this.setActualMovieSessions(this.state.filterDates)
     }
-  }
-
-  loadSessions () {
-    return axios.get('/api//sessions/getSessions')
-  }
-
-  loadMovies () {
-    return axios.get('/api/sessions/getSessionsMovies')
   }
 
   setActualMovieSessions (dates) {
@@ -84,7 +78,7 @@ export default class SchedulePage extends Component {
   // }
 
   render () {
-    let { pageTitle, actualMovies, actualSessions, modalIsShow, sessionIdForModal } = this.state
+    let { pageTitle, actualMovies, actualSessions } = this.state
     return (
       <Fragment>
         <PageTitle pageTitle={pageTitle} />

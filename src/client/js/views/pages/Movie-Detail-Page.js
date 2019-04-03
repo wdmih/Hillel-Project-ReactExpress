@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from 'react'
 import PageTitle from '../components/Page-Title'
 import PropTypes from 'prop-types'
-import axios from 'axios'
+
+import api from '../../api'
 
 export default class MovieDetailPage extends Component {
   static propTypes = {
@@ -15,18 +16,12 @@ export default class MovieDetailPage extends Component {
     }
   }
   componentDidMount () {
-    this.loadMovie()
+    api.movies.getMovieById(this.props.match.params.slug)
       .then(movRes => {
         this.setState({ movie: movRes.data })
-        this.loadSessions()
+        api.sessions.getCurMovieSession(this.state.movie.id)
           .then(sesRes => this.setState({ sessions: sesRes.data }))
       })
-  }
-  loadMovie () {
-    return axios.get(`/api/movies/${this.props.match.params.slug}`)
-  }
-  loadSessions () {
-    return axios.get(`/api/sessions/getCurMovieSession/${this.state.movie.id}`)
   }
   render () {
     let { movie, sessions } = this.state

@@ -8,6 +8,7 @@ export default class ModalHallSchema extends Component {
   }
   constructor (props) {
     super(props)
+    this.setReserve = this.setReserve.bind(this)
   }
   setReserve (rowId, seatId) {
     console.log(rowId, seatId)
