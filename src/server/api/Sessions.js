@@ -42,6 +42,10 @@ router.get('/sessions/getSessions', (req, res) => {
   res.json(getSessions())
 })
 
+router.get('/sessions/getSessionById/:id', (req, res) => {
+  res.json(db.get('sessions').find({ id: Number(req.params.id) }).value())
+})
+
 router.get('/sessions/getSessionsMovies', (req, res) => {
   let moviesWithSession = getSessionMoviesId(getSessions())
   res.json(getMoviesWithSessions(moviesWithSession))

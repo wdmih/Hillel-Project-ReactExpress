@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 export default class RadioInput extends Component {
-  propTypes = {
+  static propTypes = {
     title: PropTypes.string,
     name: PropTypes.string,
     value: PropTypes.string,

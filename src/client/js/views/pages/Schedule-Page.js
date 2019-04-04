@@ -21,9 +21,7 @@ export default class SchedulePage extends Component {
       sessions: [],
       movies: [],
       actualSessions: [],
-      actualMovies: [],
-      modalIsShow: false,
-      sessionIdForModal: null
+      actualMovies: []
     }
   }
 
@@ -66,17 +64,6 @@ export default class SchedulePage extends Component {
     this.setState({ filterDates: value })
   }
 
-  // openModal = (sessionId) => {
-  //   this.setState({
-  //     modalIsShow: true,
-  //     sessionIdForModal: sessionId
-  //   })
-  // }
-
-  // closeModal = () => {
-  //   this.setState({ modalIsShow: false })
-  // }
-
   render () {
     let { pageTitle, actualMovies, actualSessions } = this.state
     return (
@@ -84,7 +71,6 @@ export default class SchedulePage extends Component {
         <PageTitle pageTitle={pageTitle} />
         <ScheduleList movies={actualMovies} sessions={actualSessions} />
         <Aside updateFilterDates={this.updateFilterDates} />
-        {/* {this.state.modalIsShow && <Modal isShow={modalIsShow} sessionId={sessionIdForModal} onCloseModal={this.closeModal}/>} */}
       </Fragment>
     )
   }
