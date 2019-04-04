@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import PageTitle from '../components/Page-Title'
+import PageTitle from './Page-Title'
 import PropTypes from 'prop-types'
 
 import api from '../../api'

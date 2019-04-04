@@ -436,19 +436,26 @@ a {
 
   &-content {
     background-color: #fff;
-    height: 85vh;
-    min-height: 630px;
+    // height: 85vh;
+    min-height: 85vh;
     position: relative;
     margin: 7.5vh auto;
     padding: 50px;
     border-radius: 10px;
     width: 88vw;
     box-shadow: 0px 0px 15px 0px rgba(#3B5E92, .35);
+    animation-name: scaleup;
+    animation-duration: 0.4s
   }
 
   &.modal--active {
     display: block;
   }
+}
+
+@keyframes scaleup {
+  from {transform: scale(0,0)}
+  to {transform: scale(1,1)}
 }
 
 .close {

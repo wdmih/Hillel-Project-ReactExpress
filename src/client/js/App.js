@@ -13,10 +13,10 @@ import Header from './views/components/Header'
 import Modal from './views/components/Modal'
 
 // Lazy loading page components
-const MainPage = React.lazy(() => import('./views/pages/Main-Page'))
-const MovieDetailPage = React.lazy(() => import('./views/pages/Movie-Detail-Page'))
-const SchedulePage = React.lazy(() => import('./views/pages/Schedule-Page'))
-const AdminPage = React.lazy(() => import('./views/pages/Admin-Page.js'))
+const MainPage = React.lazy(() => import('./views/components/Main-Page'))
+const MovieDetailPage = React.lazy(() => import('./views/components/Movie-Detail-Page'))
+const SchedulePage = React.lazy(() => import('./views/components/Schedule-Page'))
+const AdminPage = React.lazy(() => import('./views/components/Admin-Page.js'))
 
 export default class App extends Component {
   render () {

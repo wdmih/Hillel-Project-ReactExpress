@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import PageTitle from '../components/Page-Title'
+import PageTitle from './Page-Title'
 
 export default class AdminPage extends Component {
   constructor (props) {

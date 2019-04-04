@@ -2,8 +2,8 @@ import React, { Component, Fragment } from 'react'
 
 import api from '../../api'
 
-import PageTitle from '../components/Page-Title'
-import MovieListItem from '../components/Movie-List-Item'
+import PageTitle from './Page-Title'
+import MovieListItem from './Movie-List-Item'
 
 export default class MainPage extends Component {
   constructor (props) {

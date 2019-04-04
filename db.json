@@ -433,7 +433,7 @@
             "seats": [
               {
                 "number": 1,
-                "sold": false,
+                "sold": true,
                 "reserved": false
               },
               {
@@ -443,12 +443,12 @@
               },
               {
                 "number": 3,
-                "sold": false,
+                "sold": true,
                 "reserved": false
               },
               {
                 "number": 4,
-                "sold": false,
+                "sold": true,
                 "reserved": false
               },
               {
@@ -523,7 +523,7 @@
             "seats": [
               {
                 "number": 1,
-                "sold": false,
+                "sold": true,
                 "reserved": false
               },
               {
@@ -538,17 +538,17 @@
               },
               {
                 "number": 4,
-                "sold": false,
+                "sold": true,
                 "reserved": false
               },
               {
                 "number": 5,
-                "sold": false,
+                "sold": true,
                 "reserved": false
               },
               {
                 "number": 6,
-                "sold": false,
+                "sold": true,
                 "reserved": false
               },
               {
@@ -775,17 +775,17 @@
               },
               {
                 "number": 5,
-                "sold": false,
+                "sold": true,
                 "reserved": false
               },
               {
                 "number": 6,
-                "sold": false,
+                "sold": true,
                 "reserved": false
               },
               {
                 "number": 7,
-                "sold": false,
+                "sold": true,
                 "reserved": false
               },
               {
@@ -2010,7 +2010,7 @@
               },
               {
                 "number": 2,
-                "sold": false,
+                "sold": true,
                 "reserved": false
               },
               {
@@ -2060,7 +2060,7 @@
               },
               {
                 "number": 3,
-                "sold": false,
+                "sold": true,
                 "reserved": false
               },
               {

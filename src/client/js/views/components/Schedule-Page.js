@@ -4,10 +4,9 @@ import axios from 'axios'
 
 import api from '../../api'
 
-import PageTitle from '../components/Page-Title'
-import Aside from '../components/Aside'
-import ScheduleList from '../components/Schedule-List'
-// import Modal from '../components/Modal'
+import PageTitle from './Page-Title'
+import Aside from './Aside'
+import ScheduleList from './Schedule-List'
 
 export default class SchedulePage extends Component {
   constructor (props) {
